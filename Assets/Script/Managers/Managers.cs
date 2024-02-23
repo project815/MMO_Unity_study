@@ -7,9 +7,6 @@ public class Managers : MonoBehaviour
     static Managers s_instance; // 유일성을 보장한다. (static으로 선언함으로써 그 특성상)
     public static Managers instance { get { init(); return s_instance; } }// 유일한 매니저를 갖고 온다., 프로퍼티로 선언, 함수 선언된 표현식을 개선.
 
-    public int a;
-
-    // Start is called before the first frame update
     void Start()
     {
         // 1. 하이라키 내에 유일성을 확보하자!
