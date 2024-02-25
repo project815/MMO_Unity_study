@@ -2,16 +2,28 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
+// 1. 위치 벡터
+// 2. 방향 벡터 
+
+struct MyVector
+{
+    public float x;
+    public float y;
+    public float z;
+
+    public MyVector(float _x, float _y, float _z)
+    {
+        this.x = _x;
+        this.y = _y;
+        this.z = _z;
+    }
+
+}
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     float _speed = 10.0f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -38,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
         // TransformDirection : Local -> World
         // InverseTransformDirection : World -> Local
+
         // if (Input.GetKey(KeyCode.W))
         //     transform.position += transform.TransformDirection(Vector3.forward * Time.deltaTime * _speed);
         // if (Input.GetKey(KeyCode.S))
@@ -57,6 +70,8 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.left * Time.deltaTime * _speed);
         if (Input.GetKey(KeyCode.D))
             transform.Translate(Vector3.right * Time.deltaTime * _speed);
+
+
 
     }
 }
