@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEditor.Rendering;
+using Unity.Mathematics;
 
 // 게임에서 사용되는 벡터
 // 1. 위치 벡터
@@ -49,9 +51,12 @@ public class PlayerController : MonoBehaviour
         //  2. 실제 방향 : ->     ; normalized
 
     }
+    float yAngle = 10;
 
     void Update()
     {
+
+
         // if (Input.GetKey(KeyCode.W))
         //     transform.position += new Vector3(0.0f, 0.0f, 1.0f) * Time.deltaTime * _speed;
         // if (Input.GetKey(KeyCode.S))
@@ -89,12 +94,37 @@ public class PlayerController : MonoBehaviour
 
         // transform.Translate
         if (Input.GetKey(KeyCode.W))
-            transform.Translate(Vector3.forward * Time.deltaTime * _speed);
+        {
+            transform.rotation = Quaternion.Euler(Vector3.forward);
+            // transform.Translate(Vector3.forward * Time.deltaTime * _speed);
+
+        }
         if (Input.GetKey(KeyCode.S))
-            transform.Translate(Vector3.back * Time.deltaTime * _speed);
+        {
+            transform.rotation = Quaternion.Euler(Vector3.back);
+            // transform.Translate(Vector3.back * Time.deltaTime * _speed);
+
+        }
         if (Input.GetKey(KeyCode.A))
-            transform.Translate(Vector3.left * Time.deltaTime * _speed);
+        {
+            transform.rotation = Quaternion.Euler(Vector3.left);
+            // transform.Translate(Vector3.left * Time.deltaTime * _speed);
+
+        }
         if (Input.GetKey(KeyCode.D))
-            transform.Translate(Vector3.right * Time.deltaTime * _speed);
+        {
+            transform.rotation = Quaternion.Euler(Vector3.right);
+
+            // transform.Translate(Vector3.right * Time.deltaTime * _speed);
+
+        }
+
+        yAngle += _speed * Time.deltaTime;
+        //transform.eulerAngles = new Vector3(0.0f, yAngle, 0.0f);
+
+        Quaternion qt = transform.rotation;
+        // transform.rotation = Quaternion.Euler(0.0f, yAngle, 0.0f);
+
+
     }
 }
