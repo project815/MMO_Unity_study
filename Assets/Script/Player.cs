@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Managers managers = Managers.instance;
+        Managers managers = Managers.Instance;
     }
 
     // Update is called once per frame
