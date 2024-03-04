@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 public class TestCollision : MonoBehaviour
 {
@@ -17,4 +19,31 @@ public class TestCollision : MonoBehaviour
   { 
     Debug.Log("OnTriggerEnter");
   }
+
+  private void Update()
+  {
+    // 로컬 좌표 전환
+    Vector3 look = transform.TransformDirection(Vector3.forward);
+    
+    Debug.DrawRay(transform.position + Vector3.up, look * 100, Color.red);
+    // RayCastHit 값
+    RaycastHit hit;
+    if(Physics.Raycast(transform.position + Vector3.up, look * 100, out hit))
+    {
+      //출력 이름
+      Debug.Log($"RayCasting!~{hit.transform.gameObject.name}");
+    }
+
+
+    // RaycastHit[] hit = Physics.RaycastAll(transform.position + Vector3.up, look * 100);
+    //
+    // foreach(RaycastHit i in hit)
+    // {
+    //   Debug.Log(i.transform.gameObject.name);      
+    // }
+
+    
+    // 사용 예시
+    // 캐릭터와 카메라 사이에 다른 물체가 있다면, 카메라를 앞쪽으로 이동하도록 만들 수 있다.
+  } 
 }
