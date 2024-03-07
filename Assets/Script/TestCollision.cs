@@ -28,7 +28,7 @@ public class CollisionTest : MonoBehaviour
     {
         /* 투영의 개념
          * Local(특정 물체 좌표계) <-> World(게임 세상 좌표계) <-> Viewport <-> Screen(화면/2D)
-
+z
         Debug.Log(Input.mousePosition); // Screen 좌표(px) 1980 x1080  --
         Debug.Log(Camera.main.ScreenToViewportPoint(Input.mousePosition)); // Viewport 좌표(비율) -- 1 : 1 0.7: 0.3
          */
@@ -38,13 +38,9 @@ public class CollisionTest : MonoBehaviour
         {
             
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-            Debug.Log("new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane :"+  mousePos);
-            Debug.Log("Camera.main.ScreenPointToRay(Input.mousePosition) : "+ Camera.main.ScreenPointToRay(Input.mousePosition));
-            // Debug.Log("Camera.main.ScreenToViewportPoint(Input.mousePosition) :  "_+ Camera.main.ScreenToViewportPoint(Input.mousePosition));
-            // Debug.Log("Camera.main.transform.position" + Camera.main.transform.position);
+     
             Vector3 dir = mousePos - Camera.main.transform.position;
             dir = dir.normalized;
-            // Debug.Log(Camera.main.(Input.mousePosition)); // Viewport 좌표(비율) -- 1 : 1 0.7: 0.3
 
             /* 코드 단축
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
@@ -73,9 +69,10 @@ public class CollisionTest : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Debug.DrawRay(Camera.main.transform.position, ray.direction * 100.0f, Color.red, 1.0f);
 
-            LayerMask mask = LayerMask.GetMask("Monster") | LayerMask.GetMask("Wall");
             // int mask = (1 << 8) | (1 << 9); // 비트 플래그
-
+            
+            LayerMask mask = LayerMask.GetMask("Monster") | LayerMask.GetMask("Wall");
+            
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100.0f, mask))
             {
@@ -102,4 +99,4 @@ public class CollisionTest : MonoBehaviour
         }
         */
     }
-    }
+}
