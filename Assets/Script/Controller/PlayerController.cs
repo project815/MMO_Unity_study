@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
@@ -14,7 +15,9 @@ public class PlayerController : MonoBehaviour
 
     private bool _moveToDest = false;
     private Vector3 _destPos;
-    
+
+
+
     void Start()
     {
         Managers.Input.KeyAction -= OnKeyBoard;
@@ -35,7 +38,8 @@ public class PlayerController : MonoBehaviour
             {
                 float moveDist = Mathf.Clamp(_speed * Time.deltaTime, 0, dir.magnitude);
                 transform.position += dir.normalized * moveDist;
-                transform.LookAt(_destPos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), _speed * Time.deltaTime);
+                // transform.LookAt(_destPos);
             }
         }
     }
