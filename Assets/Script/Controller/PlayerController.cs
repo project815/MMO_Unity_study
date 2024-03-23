@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 		Managers.Input.MouseAction += OnMouseClicked;
 	}
 
+
+    private float wait_run_ratio;
     void Update()
     {
 		if (_moveToDest)
@@ -37,14 +39,19 @@ public class PlayerController : MonoBehaviour
 
 		if (_moveToDest)
 		{
+			wait_run_ratio = Mathf.Lerp(wait_run_ratio, 1, 8.0f * Time.deltaTime);
 			Animator anim = GetComponent<Animator>();
-			anim.Play("BasicMotions@Run01 - Forwards [RM]");
+			anim.SetFloat("wait_run_ratio", wait_run_ratio);
+			anim.Play("WAIT_RUN");
 			
 		}
 		else
 		{
+			wait_run_ratio = Mathf.Lerp(wait_run_ratio, 0, 8.0f * Time.deltaTime);
 			Animator anim = GetComponent<Animator>();
-			anim.Play("IDLE02");
+			anim.SetFloat("wait_run_ratio", wait_run_ratio);
+
+			anim.Play("WAIT_RUN");
 		}
     }
 
@@ -79,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
 	void OnMouseClicked(Define.MouseEvent evt)
 	{
-		if (evt != Define.MouseEvent.Click)
+		if (evt == Define.MouseEvent.Click)
 			return;
 
 
