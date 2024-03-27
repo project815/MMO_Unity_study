@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -41,24 +42,17 @@ public class UI_Button : UI_Base
         Bind<GameObject>(typeof(GameObjects));
 
         GetText((int)Texts.ScoreText).text = "Buinding Text";
+
         
         GameObject go = GetImage((int)Images.TestImage).gameObject;
-        UI_EventHandler evt = go.AddComponent<UI_EventHandler>();
-        evt.OnDragHandler += (PointerEventData data) =>
-        {
-            Debug.Log($"data : {data}");
-            evt.gameObject.transform.position = data.position;
-        };
-
+        AddUIEvent(go, (PointerEventData data) => { go.gameObject.transform.position = data.position; }, Define.UIEvent.Drag);
+        
+        GetButton((int)Buttons.PointButton).gameObject.AddUIEvent(OnButtonClicked);
+        
     }
-
-  
-
-    
-    public void OnButtonClicked()
+    public void OnButtonClicked(PointerEventData data)
     {
-        Debug.Log(">???");
         score++;
-        _text.text = $"점수 : {score}";
+        GetText((int)Texts.ScoreText).text =$"점수 : {score}";
     }
 }
