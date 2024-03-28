@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-public class UI_Button : UI_Base
+public class UI_Button : UI_Popup
 {
     [SerializeField] private Text _text;
     private int score = 0;
@@ -35,17 +35,20 @@ public class UI_Button : UI_Base
 
     private void Start()
     {
+        
+        Debug.Log(typeof(Texts));
         Bind<Button>(typeof(Buttons)); //reflection ????? c# ?? 
         Bind<Text>(typeof(Texts));
         Bind<Image>(typeof(Images));
 
         Bind<GameObject>(typeof(GameObjects));
-
+        
+        
         GetText((int)Texts.ScoreText).text = "Buinding Text";
 
         
         GameObject go = GetImage((int)Images.TestImage).gameObject;
-        AddUIEvent(go, (PointerEventData data) => { go.gameObject.transform.position = data.position; }, Define.UIEvent.Drag);
+        AddUIEvent(go, (PointerEventData data) => { go.transform.position = data.position; }, Define.UIEvent.Drag);
         
         GetButton((int)Buttons.PointButton).gameObject.AddUIEvent(OnButtonClicked);
         

@@ -9,10 +9,14 @@ public class Managers : MonoBehaviour
 
     InputManager _input = new InputManager();
     ResourceManager _resource = new ResourceManager();
+    UIManger _ui = new UIManger();
 
     public static InputManager Input { get { return Instance._input; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
-
+    public static UIManger UI
+    {
+        get { return Instance._ui; }
+    }
     void Start()
     {
         // 1. 하이라키 내에 유일성을 확보하자!
