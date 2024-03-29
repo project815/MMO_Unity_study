@@ -7,10 +7,11 @@ using UnityEngine.InputSystem.Android;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-public class UI_Base : MonoBehaviour
+public abstract class UI_Base : MonoBehaviour
 {
     private Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, Object[]>();
 
+    public abstract void Init();
     protected void Bind<T>(Type type) where T : UnityEngine.Object
     {
         string[] names = Enum.GetNames(type);
@@ -40,7 +41,6 @@ public class UI_Base : MonoBehaviour
         UnityEngine.Object[] objects = null;
         if (_objects.TryGetValue(typeof(T), out objects) == false) return null;
         return objects[ids] as T;
-
     }
 
     protected  Text GetText(int idx) {return Get<Text>(idx);}
