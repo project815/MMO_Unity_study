@@ -26,7 +26,7 @@ public class UI_Inven_Item : UI_Base
         Bind<GameObject>(typeof(GameObjecs));
         Get<GameObject>((int)GameObjecs.ItemNameText).GetComponent<Text>().text = _name;
 
-        Get<GameObject>((int)GameObjecs.ItemIcon).AddUIEvent((PointerEventData)=>{Debug.Log($"아이템 클릭 : {_name}");});
+        Get<GameObject>((int)GameObjecs.ItemIcon).BindEvent((PointerEventData)=>{Debug.Log($"아이템 클릭 : {_name}");});
     }
 
     public void SetInfo(string name)

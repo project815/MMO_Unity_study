@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -42,9 +43,7 @@ public class UIManger
     public T ShowSceneUI<T>(string name = null) where T : UI_Scene
     {
         if (string.IsNullOrEmpty(name))
-        {
             name = typeof(T).Name;
-        }
 
         GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
         T scene = Util.GetOrAddComponent<T>(go);
@@ -57,9 +56,7 @@ public class UIManger
     public T ShowPopupUI<T>(string name = null)where T : UI_Popup
     {
         if (string.IsNullOrEmpty(name))
-        {
             name = typeof(T).Name;
-        }
 
         GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
         T popup = Util.GetOrAddComponent<T>(go);
@@ -68,6 +65,18 @@ public class UIManger
         go.transform.SetParent(_Root.transform);
 
         return popup;
+    }
+
+    public T MakeSubItem<T>(Transform parent, string name = null) where T : UI_Base
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.Resource.Instantiate($"UI/SubItem/{name}");
+        if (parent != null)
+            go.transform.SetParent(parent);
+        
+        return Util.GetOrAddComponent<T>(go);;
     }
 
     public void ClosePopupUI(UI_Popup popup)
