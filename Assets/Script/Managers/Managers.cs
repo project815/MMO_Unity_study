@@ -6,16 +6,21 @@ using UnityEngine;
 public class Managers : MonoBehaviour
 {
     static Managers s_instance; // 유일성을 보장한다. (static으로 선언함으로써 그 특성상)
-    public static Managers Instance { get { init(); return s_instance; } }// 유일한 매니저를 갖고 온다., 프로퍼티로 선언, 함수 선언된 표현식을 개선.
+    public static Managers Instance { get { init(); return s_instance; } } // 유일한 매니저를 갖고 온다., 프로퍼티로 선언, 함수 선언된 표현식을 개선.
 
     InputManager _input = new InputManager();
     ResourceManager _resource = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();
+    private SoundManager _sound = new SoundManager();
     UIManger _ui = new UIManger();
 
     public static InputManager Input { get { return Instance._input; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
+    public static SoundManager Sound
+    {
+        get { return Instance._sound; }
+    }
     public static UIManger UI
     {
         get { return Instance._ui; }
@@ -50,6 +55,8 @@ public class Managers : MonoBehaviour
             }
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>(); // 유일한 Managers를 갖고 온다.
+            
+            s_instance._sound.Init();
         }
     }
 }
