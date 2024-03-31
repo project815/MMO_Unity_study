@@ -110,4 +110,10 @@ public class UIManger
             ClosePopupUI();
         }
     }
+
+    public void Clear()
+    {
+        CloseAllPopupUI();
+        _uiScene = null;
+    }
 }

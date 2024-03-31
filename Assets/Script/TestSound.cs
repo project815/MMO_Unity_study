@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class TestSound : MonoBehaviour
 {
-    // public AudioClip audioClip1;
-    // public AudioClip audioClip2;
+    public AudioClip audioClip1;
+    public AudioClip audioClip2;
+
+    private int i = 0;
     private void OnTriggerEnter(Collider other)
     {
         // AudioSource audio = GetComponent<AudioSource>();
@@ -15,8 +17,11 @@ public class TestSound : MonoBehaviour
         //
         // float lifeTime = Mathf.Max(audioClip1.length, audioClip2.length); // 생명 주기를 이런 식으로 저장하는 게 맞나???
         // GameObject.Destroy(gameObject, lifeTime);
-        
-        Managers.Sound.Play(Define.Sound.Effect, "Player/Player_Footstep_05");
-        Managers.Sound.Play(Define.Sound.Effect, "Player/Player_Footstep_06");
+
+        i++;
+        if (i % 2 == 0)
+            Managers.Sound.Play(audioClip1,Define.Sound.Bgm);
+        else
+            Managers.Sound.Play( audioClip2,Define.Sound.Bgm);
     }
 }
