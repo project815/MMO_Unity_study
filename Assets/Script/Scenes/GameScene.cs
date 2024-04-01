@@ -7,6 +7,11 @@ public class GameScene : BaseScene
     void Awake()
     {
         Init();
+
+        for (int i = 0; i < 5; i++)
+        {
+            Managers.Resource.Instantiate("Player/Player");
+        }
     }
     
     public override void Init()
