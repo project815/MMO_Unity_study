@@ -17,7 +17,6 @@ public class LoginScene : BaseScene
         {
             Managers.Resource.Destroy(go);
         }
-
     }
 
     public override void Init()

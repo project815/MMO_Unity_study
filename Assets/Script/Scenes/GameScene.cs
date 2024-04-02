@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
+    private Coroutine co;
     void Awake()
     {
         Init();
 
-        for (int i = 0; i < 5; i++)
-        {
-            Managers.Resource.Instantiate("Player/Player");
-        }
+        
     }
     
     public override void Init()
@@ -21,6 +19,9 @@ public class GameScene : BaseScene
         SceneType = Define.Scene.Game;
         
         Managers.UI.ShowSceneUI<UI_Inven>();
+
+       co = StartCoroutine("AfterSeconds", 4.0f);
+       StartCoroutine("StopSeconds", 2.0f);
     }
     
     public override void Clear()
@@ -32,6 +33,26 @@ public class GameScene : BaseScene
         if (Input.GetKeyDown(KeyCode.A))
         {
             Managers.Scene.LoadeScene(Define.Scene.Login);
+        }
+    }
+
+
+    IEnumerator AfterSeconds(float seconds)
+    {
+        Debug.Log("Enter");
+        yield return new WaitForSeconds(seconds);
+        Debug.Log("Exit");
+    }
+
+    IEnumerator StopSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        if(co != null)
+        {
+            StopCoroutine(co);
+            co = null;
+            Debug.Log("Stop");
+
         }
     }
 }
