@@ -9,6 +9,7 @@ public class Managers : MonoBehaviour
     static Managers s_instance; // 유일성을 보장한다. (static으로 선언함으로써 그 특성상)
     public static Managers Instance { get { init(); return s_instance; } } // 유일한 매니저를 갖고 온다., 프로퍼티로 선언, 함수 선언된 표현식을 개선.
 
+    private DataManager _data = new DataManager();
     InputManager _input = new InputManager();
     private PoolManager _pool = new PoolManager();
     ResourceManager _resource = new ResourceManager();
@@ -16,6 +17,10 @@ public class Managers : MonoBehaviour
     private SoundManager _sound = new SoundManager();
     UIManger _ui = new UIManger();
 
+    public static DataManager Data
+    {
+        get { return new DataManager(); }
+    }
     public static InputManager Input { get { return Instance._input; } }
     public static PoolManager Pool
     {
@@ -62,6 +67,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>(); // 유일한 Managers를 갖고 온다.
             
+            s_instance._data.Init();
             s_instance._pool.Init();
             s_instance._sound.Init();
         }
