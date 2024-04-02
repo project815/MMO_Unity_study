@@ -1,35 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameScene : BaseScene
 {
-    private Coroutine co;
-    void Awake()
-    {
-        Init();
-
-        
-    }
-    
     public override void Init()
     {
         base.Init();
-
         SceneType = Define.Scene.Game;
-        
         Managers.UI.ShowSceneUI<UI_Inven>();
+        Dictionary<int, Stat> dict = Managers.Data.StatDict;
+    }
 
-    }
-    
-    public override void Clear()
-    {
-    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.H))
         {
-            Managers.Scene.LoadeScene(Define.Scene.Login);
+            Init();
         }
+    }
+
+    public override void Clear()
+    {
     }
 }

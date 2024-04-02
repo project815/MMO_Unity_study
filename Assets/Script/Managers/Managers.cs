@@ -19,7 +19,7 @@ public class Managers : MonoBehaviour
 
     public static DataManager Data
     {
-        get { return new DataManager(); }
+        get { return Instance._data; }
     }
     public static InputManager Input { get { return Instance._input; } }
     public static PoolManager Pool

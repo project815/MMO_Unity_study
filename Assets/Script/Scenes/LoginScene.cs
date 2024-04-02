@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class LoginScene : BaseScene
 {
-    void Awake()
-    {
-        Init();
-        List<GameObject> poolList = new List<GameObject>();
-        for (int i = 0; i < 5; i++)
-        {
-            poolList.Add(Managers.Resource.Instantiate("Player/Player"));
-        }
-
-        foreach (GameObject go in poolList)
-        {
-            Managers.Resource.Destroy(go);
-        }
-    }
+    // void Awake()
+    // {
+    //     Init();
+    //     List<GameObject> poolList = new List<GameObject>();
+    //     for (int i = 0; i < 5; i++)
+    //     {
+    //         poolList.Add(Managers.Resource.Instantiate("Player/Player"));
+    //     }
+    //
+    //     foreach (GameObject go in poolList)
+    //     {
+    //         Managers.Resource.Destroy(go);
+    //     }
+    // }
 
     public override void Init()
     {
