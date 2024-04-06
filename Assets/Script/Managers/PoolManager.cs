@@ -17,7 +17,7 @@ public class PoolManager
         {
             Original = original;
             Root = new GameObject().transform;
-            Root.name = $"{original.name}_Root";
+            Root.name = $"{.name}_Root";
             
             for(int i = 0; i < count; i++)
                 Push(Create());

@@ -52,7 +52,7 @@ public class Managers : MonoBehaviour
 
     void Update()
     {
-        _input.OnUpdate();
+     ㅎ   _input.OnUpdate();
     }
     static void init()
     {
